@@ -1262,7 +1262,24 @@ int main(int argc, char **argv)
 				exit(EXIT_SUCCESS);
 			case 'o':
 				outfile = optarg;
-        // set tentative type?
+        // set tentative type based on extension
+        {
+          const char *ext = strrchr(outfile, '.');
+          if (ext != NULL) {
+            if (strcasecmp(ext, ".txt") == 0) {
+              image_type = ASCII_TYPE;
+            } else if (strcasecmp(ext, ".eps") == 0) {
+              image_type = EPS_TYPE;
+            } else if (strcasecmp(ext, ".svg") == 0) {
+              image_type = SVG_TYPE;
+            } else if (strcasecmp(ext, ".xpm") == 0) {
+              image_type = XPM_TYPE;
+            } else if (strcasecmp(ext, ".png") == 0) {
+              // default to PNG_TYPE
+              image_type = PNG_TYPE;
+            }
+          }
+        }
 				break;
 			case 'r':
 				infile = optarg;
