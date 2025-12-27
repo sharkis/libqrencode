@@ -1262,6 +1262,7 @@ int main(int argc, char **argv)
 				exit(EXIT_SUCCESS);
 			case 'o':
 				outfile = optarg;
+        // set tentative type?
 				break;
 			case 'r':
 				infile = optarg;
